@@ -129,10 +129,10 @@ export default class Personal extends Component {
                         (<View style={styles.usernameView}>
                                 <Text style={styles.username}>{this.state.currentUser.attributes.username}</Text>
                                 <View style={styles.postBtn}>
-                                    <Button onPress={this.pressPostBtn} title="发帖" style={{top: 5}}/>
+                                    <Button onPress={this.pressPostBtn} title="发帖" style={{top: 5}} color={'#49afcd'}/>
                                 </View>
                                 <View style={styles.logout}>
-                                    <Button  onPress={this.pressLogout} title="退出登录"/>
+                                    <Button  onPress={this.pressLogout} title="退出登录" color={'#49afcd'}/>
                                 </View>
                             </View>
                             ) : loginView
@@ -153,7 +153,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {
@@ -193,7 +193,7 @@ const styles = {
     },
     username: {
         fontSize: 18,
-        color: '#1DBAF1'
+        color: '#2A2A2A'
     },
     postBtn: {
       marginTop: 10

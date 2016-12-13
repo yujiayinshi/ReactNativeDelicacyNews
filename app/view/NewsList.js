@@ -11,7 +11,7 @@ import {
     ScrollView,
     ListView
 } from 'react-native';
-import NewsDetail from './newsDetail';
+import NewsDetail from './NewsDetail';
 import AV from '../LeanCloud';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;

@@ -13,16 +13,26 @@ import {
     WebView
 } from 'react-native';
 const WINDOW_WIDTH = Dimensions.get('window').width;
-
 export default class NewsDetail extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            imgHeight: null
+        };
     }
 
     goback() {
         if (this.props.navigator) {
             this.props.navigator.pop();
         }
+    }
+
+    componentDidMount() {
+        Image.getSize(this.props.route.params.row.img, (width, height) => {
+            this.setState({
+                imgHeight: height * WINDOW_WIDTH / width
+            })
+        })
     }
 
     render() {
@@ -40,7 +50,7 @@ export default class NewsDetail extends Component {
                     </View>
                 </View>
                 <ScrollView style={styles.contentView}>
-                    <Image source={{uri: row.img}} style={styles.image} />
+                    <Image source={{uri: row.img}} style={{flex: 1, width: WINDOW_WIDTH, height: this.state.imgHeight}}/>
                     <Text style={styles.contentText}>
                         {row.content}
                     </Text>
@@ -60,7 +70,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {
@@ -87,10 +97,5 @@ const styles = {
     },
     contentView: {
         flex: 1
-    },
-    image: {
-        width: WINDOW_WIDTH,
-        height: 200,
-        resizeMode: 'stretch'
     }
 };

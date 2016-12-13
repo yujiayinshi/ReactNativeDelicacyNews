@@ -33,7 +33,6 @@ export default class Splash extends Component {
 
 const styles = {
     container: {
-        marginTop: 20,
         flex: 1
     },
     backgroundImage: {
@@ -43,6 +42,6 @@ const styles = {
         width: null,
         height: null,
         backgroundColor: 'transparent',
-        resizeMode: 'stretch'
+        resizeMode: 'cover'
     }
 };

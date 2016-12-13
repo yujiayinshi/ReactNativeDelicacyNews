@@ -13,7 +13,6 @@ import {
     CameraRoll,
     Picker
 } from 'react-native';
-import GalleryImages from './GalleryImages';
 import ImagePicker from 'react-native-image-picker';
 import Tab from './Tab.js'
 
@@ -184,7 +183,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {
@@ -235,7 +234,7 @@ const styles = {
         flex: 1
     },
     buttonView: {
-        backgroundColor: '#1DBAF1',
+        backgroundColor: '#49afcd',
         margin: 10,
         borderRadius: 6,
         justifyContent: 'center',

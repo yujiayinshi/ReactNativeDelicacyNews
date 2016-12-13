@@ -106,7 +106,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {

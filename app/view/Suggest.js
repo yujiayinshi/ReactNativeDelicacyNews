@@ -10,7 +10,7 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
-import NewsList from './newsList';
+import NewsList from './NewsList';
 import AV from '../LeanCloud';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -77,7 +77,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {

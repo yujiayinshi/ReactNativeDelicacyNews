@@ -11,7 +11,7 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native';
-import NewsList from './newsList';
+import NewsList from './NewsList';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import AV from '../LeanCloud';
 
@@ -116,8 +116,8 @@ export default class Find extends Component {
                                onChangeText={this.searchNews}/>
                 </View>
                 <ScrollableTabView
-                    tabBarUnderlineStyle={{backgroundColor: 'steelblue'}}
-                    tabBarActiveTextColor="steelblue"
+                    tabBarUnderlineStyle={{backgroundColor: '#49afcd'}}
+                    tabBarActiveTextColor="#49afcd"
                     tabBarBackgroundColor="#FFF"
                     onChangeTab={this.changeTab}>
                     {tabs}
@@ -138,7 +138,7 @@ const styles = {
         paddingRight: 10,
         paddingTop: 20,
         height: 68,
-        backgroundColor: 'steelblue',
+        backgroundColor: '#363636',
         alignItems: 'center'
     },
     headerBtn: {
