@@ -15,7 +15,6 @@ import NewsList from './NewsList';
 import AV from '../LeanCloud';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
-const buttons = ['取消', '湘菜', '川菜', '粤菜'];
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -77,7 +76,7 @@ export default class Home extends Component {
                 <View style={styles.header}>
                     <View style={styles.headerBtn}/>
                     <View style={styles.headerCenter}>
-                        <Text style={styles.headerTitle}>吃货资讯</Text>
+                        <Text style={styles.headerTitle}>美食诱惑</Text>
                     </View>
                 </View>
                 <ScrollView>
