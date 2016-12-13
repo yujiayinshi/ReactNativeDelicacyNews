@@ -11,7 +11,6 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import ActionSheet from 'react-native-actionsheet';
 import NewsList from './NewsList';
 import AV from '../LeanCloud';
 
@@ -69,10 +68,6 @@ export default class Home extends Component {
         this.getSlides();
     }
 
-    showActionSheet() {
-        this.ActionSheet.show();
-    }
-
     render() {
         const slides = this.state.slides.map((item) => (
             <Image key={item.img} style={styles.slide} source={{uri: item.img}}/>
@@ -84,10 +79,6 @@ export default class Home extends Component {
                     <View style={styles.headerCenter}>
                         <Text style={styles.headerTitle}>吃货资讯</Text>
                     </View>
-                    <TouchableOpacity onPress={this.showActionSheet.bind(this)}>
-                        <Image source={require('../images/header/more.png')}
-                               style={[styles.headerBtn, styles.headerIcon]}/>
-                    </TouchableOpacity>
                 </View>
                 <ScrollView>
                     <Swiper showButtons={false} autoplay height={200} showsPagination>
@@ -95,12 +86,6 @@ export default class Home extends Component {
                     </Swiper>
                     <NewsList data={this.state.newsData} route={this.props.route} navigator={this.props.navigator}/>
                 </ScrollView>
-                <ActionSheet
-                    ref={(o) => this.ActionSheet = o}
-                    title="进入推荐分类"
-                    options={buttons}
-                    cancelButtonIndex={0}
-                    destructiveButtonIndex={1}/>
             </View>
         );
     }
