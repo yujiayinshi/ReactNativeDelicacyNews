@@ -54,7 +54,11 @@ react-native run-android
 可以看到模拟器中程序运行
 
 #### 真机安装
-[安装包下载](http://7xt9oc.com1.z0.glb.clouddn.com/delicacy-news-release-20161213beta.apk)
+[安装包下载](http://7xt9oc.com1.z0.glb.clouddn.com/delicacy-news-release-20161214beta.apk)
+
+亦可扫以下扫二维码下载
+
+<img width=300 height=300 src=http://7xt9oc.com1.z0.glb.clouddn.com/apkqrcode.png />
 
 ## 使用的组件及服务
 
