@@ -14,9 +14,10 @@ import {
     Picker
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import Tab from './Tab.js'
-
+import Tab from './Tab.js';
 import AV from '../LeanCloud';
+import {login} from '../actions/user';
+
 const Post = AV.Object.extend('Post');
 const Scene = AV.Object.extend('Scene');
 

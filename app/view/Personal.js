@@ -12,11 +12,13 @@ import {
     TextInput,
     Button
 } from 'react-native';
+import {connect} from 'react-redux';
 import Register from './Register';
 import AV from '../LeanCloud';
 import PostPage from './PostPage';
+import {login, logout} from '../actions/user';
 
-export default class Personal extends Component {
+class Personal extends Component {
     constructor(props) {
         super(props);
         this.pressNewUser = this.pressNewUser.bind(this);
@@ -25,25 +27,10 @@ export default class Personal extends Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.pressPostBtn = this.pressPostBtn.bind(this);
         this.pressLogout = this.pressLogout.bind(this);
-        this.getUser = this.getUser.bind(this);
         this.state = {
             username: '',
             password: ''
         };
-    }
-
-    componentDidMount() {
-        this.getUser();
-    }
-
-    getUser() {
-        setTimeout(()=>{
-            if (AV.User.current()) {
-                this.setState({
-                    currentUser: AV.User.current()
-                })
-            }
-        });
     }
 
     handleUsername(text) {
@@ -62,11 +49,11 @@ export default class Personal extends Component {
     }
 
     pressLogin() {
-        AV.User.logIn(this.state.username, this.state.password).then((user) => {
-            this.setState({currentUser: user})
-        }, (error) => {
-            alert(JSON.stringify(error))
-        });
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        this.props.dispatch(login(user));
     }
 
     pressPostBtn() {
@@ -77,9 +64,7 @@ export default class Personal extends Component {
     }
 
     pressLogout() {
-        AV.User.logOut().then(()=>{
-            this.setState({currentUser: ''})
-        });
+        this.props.dispatch(logout());
     }
 
     render() {
@@ -125,14 +110,14 @@ export default class Personal extends Component {
                     <Image source={require('../images/chihuo.jpg')} style={styles.avatarImage}/>
                 </View>
                 {
-                    this.state.currentUser ?
+                    this.props.hasLogin ?
                         (<View style={styles.usernameView}>
-                                <Text style={styles.username}>{this.state.currentUser.attributes.username}</Text>
+                                <Text style={styles.username}>{this.props.user.username}</Text>
                                 <View style={styles.postBtn}>
                                     <Button onPress={this.pressPostBtn} title="发帖" style={{top: 5}} color={'#49afcd'}/>
                                 </View>
                                 <View style={styles.logout}>
-                                    <Button  onPress={this.pressLogout} title="退出登录" color={'#49afcd'}/>
+                                    <Button onPress={this.pressLogout} title="退出登录" color={'#49afcd'}/>
                                 </View>
                             </View>
                             ) : loginView
@@ -265,3 +250,12 @@ const styles = {
     }
 
 };
+
+function select(store) {
+    return {
+        hasLogin: store.userStore.hasLogin,
+        user: store.userStore.user
+    }
+}
+
+export default connect(select)(Personal);

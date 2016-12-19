@@ -8,6 +8,6 @@ import React, {Component} from 'react';
 import {
     AppRegistry
 } from 'react-native';
-import Main from './app/main'
+import App from './app/index'
 
-AppRegistry.registerComponent('ReactNativeNews', () => Main);
+AppRegistry.registerComponent('ReactNativeNews', () => App);
