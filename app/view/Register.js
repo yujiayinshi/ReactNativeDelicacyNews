@@ -11,10 +11,10 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native';
+import {connect} from 'react-redux';
+import {signUp} from '../actions/user';
 
-import AV from '../LeanCloud';
-
-export default class Register extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,6 +27,15 @@ export default class Register extends Component {
         this.pressRegister = this.pressRegister.bind(this);
     }
 
+    shouldComponentUpdate(nextProps) {
+        alert(nextProps.hasLogin);
+        if (nextProps.hasLogin !== this.props.hasLogin && nextProps.hasLogin) {
+            this.props.navigator.pop();
+            return false;
+        }
+        return true;
+    }
+
     pressHaveAccount() {
         if (this.props.navigator) {
             this.props.navigator.pop();
@@ -34,14 +43,11 @@ export default class Register extends Component {
     }
 
     pressRegister() {
-        const user = new AV.User();
-        user.setUsername(this.state.username);
-        user.setPassword(this.state.password);
-        user.signUp().then((user) => {
-            this.props.navigator.pop();
-        }, (error) => {
-            console.log(JSON.stringify(error))
-        });
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        this.props.dispatch(signUp(user));
     }
 
     handleUsername(text) {
@@ -76,16 +82,16 @@ export default class Register extends Component {
                                underlineColorAndroid="transparent" onChangeText={this.handlePassword}/>
                 </View>
                 <View style={styles.bottomView}>
-                    <View style={styles.buttonView}>
-                        <TouchableOpacity onPress={this.pressRegister}>
+                    <TouchableOpacity onPress={this.pressRegister}>
+                        <View style={styles.buttonView}>
                             <Text style={styles.loginText}>注册</Text>
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                     <View style={styles.bottomButtonsView}>
                         <View style={styles.bottomRightView}>
                             <TouchableOpacity
                                 onPress={this.pressHaveAccount}>
-                                <Text style={styles.bottomBtn}>已有账号</Text>
+                                    <Text style={styles.bottomBtn}>已有账号</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -192,3 +198,12 @@ const styles = {
     }
 
 };
+
+function select(store) {
+    return {
+        hasLogin: store.userStore.hasLogin,
+        user: store.userStore.user
+    }
+}
+
+export default connect(select)(Register);
